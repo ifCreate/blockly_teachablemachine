@@ -70,7 +70,7 @@ function setup()
   // game_div.style.visibility = "hidden";
   run_btn=document.getElementById('btnRun');
   run_btn.addEventListener('click',function(e){
-      ws = new WebSocket('ws://192.168.3.8:9001/');
+      ws = new WebSocket('wss://neo-edu.io/websocket');
       ws.onopen = function()
       {
           //为onmessage绑定事件，接收消息
