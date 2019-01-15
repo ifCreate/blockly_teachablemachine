@@ -1,0 +1,324 @@
+  #output {   
+    max-width: 200px;
+    height: 200px;
+    margin-bottom: 45px;
+  }
+
+  .output-container {
+    display: block;
+    float: right;
+    width: 330px;
+    height: 450px;
+    padding-bottom: 35px !important;
+  }
+
+  .input-container {
+    display: block;
+    float: left;
+    width: 300px;
+    height: 450px;
+    padding-bottom: 35px !important;
+  }
+
+  #learning-container{
+    display: block;
+    float: left;
+    width: 150px;
+    height: 450px;
+    padding-bottom: 35px !important;
+  }
+  .center-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gif-container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+  }
+
+  .sound-container {
+    display: block;
+    text-align: center;
+  }
+
+  .sound-container .container {
+    height: 100px;
+    margin: 26px 10px;
+    padding: 38px;
+    border: 4px solid lightgray;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  #containerA {
+    border: 4px solid #4ca64c;
+  }
+
+  #containerB {
+    border: 4px solid #b76fdb;
+  }
+
+  #containerC {
+    border: 4px solid #ff5ab3;
+  }
+
+  #soundA.playing {
+    border: 4px solid #4ca64c;
+    color: #4ca64c;
+    font-weight: bold;
+  }
+  #soundB.playing {
+    border: 4px solid #b76fdb;
+    color: #b76fdb;
+    font-weight: bold;
+  }
+  #soundC.playing {
+    border: 4px solid #ff5ab3;
+    color: #ff5ab3;
+    font-weight: bold;
+  }
+
+  .image {
+    margin: 5px;
+    opacity: 1;
+    display: block;
+    width: 70px;
+    height: 70px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  .container:hover .image {
+    opacity: 0.3;
+  }
+
+  .container:hover .middle {
+    opacity: 1;
+  }
+
+  #canvasContainer{
+    margin-left: 15px;
+    width: 250px;
+    height: 400px;
+
+  }
+
+  .text {
+    background-color: #333;
+    color: white;
+    font-size: 12px;
+    padding: 16px 22px;
+  }
+
+  .body-container {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+  }
+
+  .white-box {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 7px;
+  }
+
+  .confidence-box{
+    font-size: 14px;
+  }
+  .trainbtn-box {
+    margin-top: 20px;
+    height: 40px;
+
+  }
+
+  .purple-color {
+    color: #b76fdb;
+  }
+
+  .green-color {
+    color: #4ca64c;
+  }
+
+  .pink-color {
+    color: #ff5ab3;
+  }
+
+  .examplereset-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 120px;
+    height: 22px;
+    font-size: 14px;
+  }
+
+  .examplereset-container button{
+    font-size: 10px;
+    width: 50px;
+    height: 20px;
+  }
+
+  .center-text {
+    text-align: center;
+  }
+
+  /* All about 3D buttons */
+
+  .train-button {
+    display: inline-block;
+    padding: 10px 10px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 14px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    white-space: pre;
+    cursor: pointer;
+    margin-left: 65px;
+  }
+
+  .train-button:active {
+    margin-left: -6px;
+    margin-top: 6px;
+    margin-left: 65px;
+  }
+
+
+  #buttonA {
+    background-color: #4ca64c;
+    border-radius: 5px;
+    border: 1px solid #4ca64c;
+  }
+
+
+  #buttonB {
+    background-color: #b76fdb;
+    border-radius: 5px;
+    border: 1px solid #b76fdb;
+  }
+
+
+  #buttonC {
+    background-color: #ff5ab3;
+    border-radius: 5px;
+    border: 1px solid #ff5ab3;
+  }
+
+  /* End of 3D buttons */
+
+  /* All about progress bar */
+
+  .progress {
+    position: relative;
+    width: 120px;
+    height: 20px;
+    background: lightgray;
+  }
+
+  .progress .progress-bar {
+    height: 20px;
+    width: 0%;
+    display: inline-block;
+  }
+
+  #progress-barA {
+    background: #4ca64c;
+  }
+
+  #progress-barB {
+    background: #b76fdb;
+  }
+
+  #progress-barC {
+    background: #ff5ab3;
+  }
+
+  .progress .progress-text {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    color: white;
+    padding: 5px 20px;
+  }
+
+  /* End of progress bar */
+
+  /* Responsiveness */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  [class*="col-"] {
+    float: left;
+  }
+
+  /* For desktop: */
+
+  .col-3 {
+    width: 30%;
+  }
+
+  /* .col-10 {width: 100%;} */
+
+  /* Radio selecting output type */
+  .output-control {
+    text-align: center;
+  }
+  .radio-label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    color: gray;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    /*transition: all linear 0.1s;*/
+  }
+  .radio-label:hover {
+    text-decoration: underline;
+  }
+  input[type=radio]:checked + label{
+    color: #ed225d;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  /* Hide the browser's default radio button */
+  .output-control input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  /* End radio */
+
+  @media only screen and (max-width: 1024px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+  }

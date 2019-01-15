@@ -1,0 +1,108 @@
+body {
+    background: #eee;
+    /*background: url("../materials/bg2.jpg");*/
+  }
+
+#blockly{
+	width: 520px;
+    height: 620px;
+	float: left;
+    margin-top: 30px;
+    margin-left: 20px;
+    border-radius: 7px;
+}
+
+#game{
+	width: 850px;
+	float: right;
+    /*margin-top:100px;*/
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+}
+
+#blocklyDiv{
+	width: 520px;
+	height: 620px;
+    margin-right:20px;
+}
+
+button:hover
+{
+    cursor:pointer;
+}
+
+#btnRun, #editBtn, #closeBtn, #stopBtn
+{
+    /*background:url("https://banner2.kisspng.com/20180710/icv/kisspng-computer-icons-flag-icon-5b452e4addc4f1.2563378715312604909084.jpg");*/
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    border-radius: 5px;
+}
+
+#btnRun
+{
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
+#editBtn.none, #closeBtn.none
+{
+    /*background-color: #68228B;*/
+    /*border: 1px solid #68228B;*/
+    background-color: #919191;
+    border: 1px solid #919191;
+}
+#editBtn.editable
+{
+    background-color: #68228B;
+    border: 1px solid #68228B;
+}
+
+#closeBtn.valid
+{
+    background-color: #CD3700;
+    border: 1px solid #CD3700;
+}
+
+#stopBtn
+{
+    background-color: #111;
+    border: 1px solid #111;
+}
+
+.control_robot_btn, .cancel_control_robot_btn
+{
+    color:white;
+    padding:15px 32px;
+    text-align:center;
+    text-decoration: none;
+    font-size:16px;
+    margin:10px;
+    /*width:80px;*/
+    /*height:40px;*/
+}
+
+.control_robot_btn
+{
+    background-color: #68228B;
+    border-radius: 5px;
+    border: 1px solid #68228B;
+}
+
+.cancel_control_robot_btn
+{
+    background-color: #CD3700;
+    border-radius: 5px;
+    border: 1px solid #CD3700;
+}
+
+button#resetA:hover, button#resetB:hover, button#resetC:hover
+{
+    cursor:pointer;
+    background-color:#E0FFFF;
+}

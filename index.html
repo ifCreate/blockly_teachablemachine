@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teachable Machine</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--适配移动端-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/teachableMachine.css">
+    <script src="lib/ml5.min.js"></script>
+    <script src="lib/p5.min.js"></script>
+    <script src="lib/p5.sound.min.js"></script>
+    <script src="lib/p5.dom.min.js"></script>
+    <script src="lib/blockly/blockly_compressed.js"></script>
+    <script src="lib/blockly/blocks_compressed.js"></script>
+    <script src="lib/blockly/python_compressed.js"></script>
+    <script src="lib/blockly/en.js"></script>
+    <!--<script src="lib/d3.js"></script>-->
+    <script type="text/javascript" src="js/defBlock.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+
+</head>
+
+<body>
+<div id="blockly">
+    <div id="blocklyDiv"></div>
+    <button id="editBtn" class="none">TRAIN</button>
+    <!--<button id="closeBtn" class="none">CLOSE</button>-->
+    <button id="btnRun">RUN</button>
+    <button id="stopBtn">STOP</button>
+    <xml id="toolbox" style="display: none">
+        <!--<category name="AI blocks" colour="330">-->
+        <!--<block type="faceRecognition"></block>-->
+        <!--<block type="imageRecognition"></block>-->
+        <!--<block type="featureExtractor"></block>-->
+        <!--<block type="lstmGenerator"></block>-->
+        <!--<block type="word2vec"></block>-->
+        <!--<block type="cnn"></block>-->
+        <!--<block type="gan"></block>-->
+        <!--<block type="autoencoders"></block>-->
+        <!--<block type="rnn"></block>-->
+        <!--<block type="svm"></block>-->
+        <!--</category>-->
+        <category name="Logic" colour="200">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="controls_repeat_ext"></block>
+        </category>
+        <category name="Event" colour="330">
+            <block type="whenRunBtnClick"></block>
+            <!--<block type="whenBtnClicked"></block>-->
+            <!--<block type="eventBtnClick"></block>-->
+            <!--<block type="whenControlRobotBtnClick"></block>-->
+            <!--<block type="whenDisconnectTheControlBtnClick"></block>-->
+        </category>
+        <!--<category name="Math" colour="50">-->
+            <!--<block type="math_number"></block>-->
+            <!--<block type="math_arithmetic"></block>-->
+            <!--<block type="lists_indexOf"></block>-->
+            <!--<block type="lists_setIndex"></block>-->
+            <!--<block type="lists_sort"></block>-->
+        <!--</category>-->
+        <category name="Media" colour="120">
+            <block type="playMusic"></block>
+            <block type="dataWebcam"></block>
+        </category>
+        <category name="Text" colour="160">
+            <block type="text_count"></block>
+            <block type="text_reverse"></block>
+            <block type="text"></block>
+            <block type="text_print"></block>
+            <block type="text_prompt_ext"></block>
+            <block type="text_replace"></block>
+            <block type="text_getSubstring"></block>
+
+        </category>
+
+        <!--<category name="Data" colour="290">-->
+        <!--</category>-->
+        <!--<category name="Sound" colour="330">-->
+        <!--<block type="playMusic"></block>-->
+        <!--&lt;!&ndash;<block type="stopAllSounds"></block>&ndash;&gt;-->
+        <!--</category>-->
+
+        <category name="AI" colour="#B72E2A">
+            <!--<block type="buildImageClassifier"></block>-->
+            <!--<block type="resetCorrespondingClassifier"></block>-->
+            <!--<block type="getClass"></block>-->
+            <!--<block type="humanFace"></block>-->
+            <block type="teachableMachine"></block>
+            <!--<block type="handwrittenDigit"></block>-->
+            <!--<block type="faceRecognition"></block>-->
+            <!--<block type="imageRecognition"></block>-->
+            <!--<block type="featureExtractor"></block>-->
+            <!--<block type="lstmGenerator"></block>-->
+            <!--<block type="word2vec"></block>-->
+            <!--<block type="cnn"></block>-->
+            <!--<block type="gan"></block>-->
+            <!--<block type="autoencoders"></block>-->
+            <!--<block type="rnn"></block>-->
+            <!--<block type="svm"></block>-->
+        </category>
+        <category name="Robot" colour="100">
+            <block type="controlRobot"></block>
+            <block type="disconnectControlRobot"></block>
+        </category>
+        <category name="Looks" colour="280">
+        <block type="trainType"></block>
+        </category>
+    </xml>
+</div>
+
+
+<div id="game" style="display:none">
+
+    <div class="body-container row">
+        <!--input-->
+        <div class="input-container white-box">
+            <h3 class="title">INPUT</h3>
+            <div id="canvasContainer" class="center-container"></div>
+        </div>
+        <!--learning-->
+        <div id="learning-container" class="white-box">
+            <h3 class="title">LEARNING</h3>
+            <div>
+                <div class="trainbtns-container">
+
+                    <div class="green-color">
+                        <div class="confidence-box">
+                            <div>CONFIDENCE</div>
+                            <div class="progress" id="progress0">
+                                <span class="progress-text" id="progress-textA"></span>
+                                <div class="progress-bar" id="progress-barA"></div>
+                            </div>
+                        </div>
+
+                        <div class="examplereset-container">
+                            <span id="exampleA">0 CASES</span>
+                            <button id="resetA">RESET</button>
+                        </div>
+
+                        <div class="trainbtn-box">
+                            <button id="buttonA" class="train-button">TRAIN GREEN</button>
+                        </div>
+                    </div>
+
+                    <div class="purple-color">
+                        <div class="confidence-box">
+                            <div>CONFIDENCE</div>
+                            <div class="progress" id="progress1">
+                                <span class="progress-text" id="progress-textB"></span>
+                                <div class="progress-bar" id="progress-barB"></div>
+                            </div>
+                        </div>
+
+                        <div class="examplereset-container">
+                            <span id="exampleB">0 CASES</span>
+                            <button id="resetB">RESET</button>
+                        </div>
+
+                        <div class="trainbtn-box">
+                            <button id="buttonB" class="train-button">TRAIN PURPLE</button>
+                        </div>
+                    </div>
+
+                    <div class="pink-color">
+                        <div class="confidence-box">
+                            <div>CONFIDENCE</div>
+                            <div class="progress" id="progress2">
+                                <span class="progress-text" id="progress-textC"></span>
+                                <div class="progress-bar" id="progress-barC"></div>
+                            </div>
+                        </div>
+
+                        <div class="examplereset-container">
+                            <span id="exampleC">0 CASES</span>
+                            <button id="resetC">RESET</button>
+                        </div>
+
+                        <div class="trainbtn-box">
+                            <button id="buttonC" class="train-button">TRAIN PINK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--output-->
+        <div class="white-box output-container">
+            <h3 class="title">OUTPUT</h3>
+            <div class="output-control">
+                <!-- <input type="radio" id="option-gif" name="output-radio" checked><label for="option-gif" class="radio-label">GIF</label>
+                <input type="radio" id="option-sound" name="output-radio"><label for="option-sound" class="radio-label">Sound</label> -->
+            </div>
+
+            <div id="gif-output">
+                <div class="center-container"><img id="output" src="media/default.jpg"/></div>
+
+                <div class="gif-container">
+                    <div class="container" id="containerA">
+                        <img class="image" id="imgA" src="media/output0.jpg"/>
+                        <div class="middle" onclick="uploadGif(0)">
+                            <div class="text">EDIT</div>
+                        </div>
+                    </div>
+
+                    <div class="container" id="containerB">
+                        <img class="image" id="imgB" src="media/output1.jpg"/>
+                        <div class="middle" onclick="uploadGif(1)">
+                            <div class="text">EDIT</div>
+                        </div>
+                    </div>
+
+                    <div class="container" id="containerC">
+                        <img class="image" id="imgC" src="media/output2.jpg"/>
+                        <div class="middle" onclick="uploadGif(2)">
+                            <div class="text">EDIT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sound-output" style="display:none;">
+                <div class="sound-container">
+                    <div class="container" id="soundA"></div>
+                    <div class="container" id="soundB"></div>
+                    <div class="container" id="soundC"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div id="control_robot_div">-->
+        <!--<button id="control_robot_btn" class="control_robot_btn">CONTROL THE ROBOT</button>-->
+    <!--</div>-->
+</div>
+
+<script src="js/blockController.js"></script>
+</body>
+</html>
