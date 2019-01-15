@@ -29,6 +29,10 @@ var edit_btn = null;
 var run_btn = null;
 var stop_btn = null;
 
+// 0 = not recording
+// 1 = recording
+var btnState = 0;
+const btnText = ["TRAIN GREEN","TRAIN PURPLE","TRAIN PINK"];
 
 //通信部分
 // var ws = new WebSocket('ws://192.168.2.230:9001/');
@@ -260,17 +264,35 @@ function initGame()
     // Train buttons
     msgArray.forEach((id, index) => {
         let button = select('#button' + id);
-        button.mousePressed(() => {
-                if (timers[index]) clearInterval(timers[index]);
-                timers[index] = setInterval(() => { train(index); }, 100);
+        button.mouseClicked(() => {
+			switch(btnState)
+			{
+				case 0:					
+					button.elt.innerHTML = "STOP";
+					if (timers[index]) clearInterval(timers[index]);
+					timers[index] = setInterval(() => { train(index); }, 100);
+					btnState = 1;
+					break;
+				case 1:
+					button.elt.innerHTML = btnText[index];
+					if (timers[index]) {
+						clearInterval(timers[index]);
+						updateExampleCounts();
+					}
+					btnState = 0;
+					break;
+				default: throw error;
+			}			
         });
-
+		
+		/*
         button.mouseReleased(() => {
                 if (timers[index]) {
                     clearInterval(timers[index]);
                     updateExampleCounts();
                 }
         });
+		*/
     });
 
     // Reset buttons
